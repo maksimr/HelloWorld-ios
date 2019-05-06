@@ -2,16 +2,13 @@ language: swift
 osx_image: xcode10.2
 notifications:
   email: false
-branches:
-  only:
-    - master
 before_install:
   - gem install fastlane -no-ri-no-rdoc --no-document
 jobs:
   include:
-    - stage: XCTest
-      script:
-        - fastlane scan -s HelloWorldTests
-    - stage: XCUITest
-      script:
-        - fastlane scan -s HelloWorldUITests
+    - stage: Test
+      name: XCTest
+      script: fastlane scan -s HelloWorldTests
+    - stage: Test
+      name: XCUITest
+      script: fastlane scan -s HelloWorldUITests
