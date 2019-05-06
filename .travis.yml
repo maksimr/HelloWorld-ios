@@ -6,7 +6,7 @@ branches:
   only:
     - master
 before_install:
-  - gem install fastlane --no-ri --no-rdoc --no-document
+  - gem install fastlane -no-ri-no-rdoc --no-document
 jobs:
   include:
     - stage: XCTest
