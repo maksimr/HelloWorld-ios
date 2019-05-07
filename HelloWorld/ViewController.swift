@@ -18,8 +18,11 @@ class ViewController: UIViewController {
         }
 
         func stretchAndCenter(view: UIView, relativeTo: UIView) {
-            view.leftAnchor.constraint(equalTo: relativeTo.leftAnchor).isActive = true;
-            view.rightAnchor.constraint(equalTo: relativeTo.rightAnchor).isActive = true;
+            relativeTo.addConstraints(NSLayoutConstraint.constraints(
+                    withVisualFormat: "H:|-[view]-|",
+                    metrics: nil,
+                    views: ["view": view]
+            ))
             view.centerYAnchor.constraint(equalTo: relativeTo.centerYAnchor).isActive = true;
         }
 
