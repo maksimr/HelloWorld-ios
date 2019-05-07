@@ -17,7 +17,7 @@ class HelloWorldUITests: XCTestCase {
         let app = XCUIApplication()
         app.launch()
 
-        let hiLabel = app.staticTexts[AccessibilityIdentifiers.hiLabel]
+        let hiLabel = app.staticTexts[AccessibilityIdentifiers.helloWorldLabel]
         XCTAssertEqual(hiLabel.label, "Hello World")
     }
 }

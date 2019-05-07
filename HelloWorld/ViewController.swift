@@ -13,11 +13,38 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let hiLabel = UILabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-        hiLabel.text = "Hello World"
-        hiLabel.textAlignment = .center
-        hiLabel.accessibilityIdentifier = AccessibilityIdentifiers.hiLabel
+        func enableAutoLayout(for view: UIView) {
+            view.translatesAutoresizingMaskIntoConstraints = false
+        }
 
-        self.view.addSubview(hiLabel)
+        func stretchAndCenter(view: UIView, relativeTo: UIView) {
+            view.leftAnchor.constraint(equalTo: relativeTo.leftAnchor).isActive = true;
+            view.rightAnchor.constraint(equalTo: relativeTo.rightAnchor).isActive = true;
+            view.centerYAnchor.constraint(equalTo: relativeTo.centerYAnchor).isActive = true;
+        }
+
+        view.backgroundColor = .white
+
+        let messageLabel = UILabel()
+        messageLabel.accessibilityIdentifier = AccessibilityIdentifiers.helloWorldLabel
+        messageLabel.text = "Hello World"
+        messageLabel.font = UIFont.systemFont(ofSize: 50.0, weight: UIFont.Weight.bold)
+        messageLabel.textAlignment = .center
+        messageLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(onTap)))
+        messageLabel.isUserInteractionEnabled = true
+
+        view.addSubview(messageLabel)
+
+        enableAutoLayout(for: view)
+        enableAutoLayout(for: messageLabel)
+        stretchAndCenter(view: messageLabel, relativeTo: view)
+    }
+
+    @objc func onTap() {
+        UIViewPropertyAnimator(duration: 1.0, curve: .easeOut) {
+            self.view.backgroundColor = self.view.backgroundColor == .white ?
+                    .orange :
+                    .white
+        }.startAnimation();
     }
 }

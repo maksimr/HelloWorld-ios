@@ -6,5 +6,5 @@
 import Foundation
 
 class AccessibilityIdentifiers {
-    static let hiLabel = "hiLabel"
+    static let helloWorldLabel = "helloWorldLabel"
 }
